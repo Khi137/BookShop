@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - _02_Layout</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    
+</head>
+<body>
+    <header class="header_section">
+        <div class="header_top">
+            <div class="container-fluid">
+                <div class="top_nav_container">
+                    <div class="contact_nav">
+                        <a href="">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span>
+                                Call : +01 123455678990
+                            </span>
+                        </a>
+                        <a href="">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span>
+                                Email : demo@gmail.com
+                            </span>
+                        </a>
+                    </div>
+                    <from class="search_form">
+                        <input type="text" class="form-control" placeholder="Search here...">
+                        <button class="" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </from>
+                    <div class="user_option_box">
+                        <a asp-controller="Home" asp-action="MyAccount" class="account-link">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>
+                                My Account
+                            </span>
+                        </a>
+                        <a asp-controller="Home" asp-action="Cart" class="cart-link">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>
+                                Cart
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="header_bottom">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand" >
+                        <span>
+                            Minics
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""> </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="About"> About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Product">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="WhyUs">Why Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"asp-controller="Home" asp-action="Testimonial">Testimonial</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <!-- info section -->
+    <section class="info_section ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="info_contact">
+                        <h5>
+                            <a href="index.html" class="navbar-brand">
+                                <span>
+                                    Minics
+                                </span>
+                            </a>
+                        </h5>
+                        <p>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            Address
+                        </p>
+                        <p>
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            +01 1234567890
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            demo@gmail.com
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info_info">
+                        <h5>
+                            Information
+                        </h5>
+                        <p>
+                            Eligendi sunt, provident, debitis nemo, facilis cupiditate velit libero dolorum aperiam enim nulla iste maxime corrupti ad illo libero minus.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info_links">
+                        <h5>
+                            Useful Link
+                        </h5>
+                        <ul>
+                            <li>
+                                <a  asp-controller="Home" asp-action="Index">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="About">
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Product">
+                                    Products
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="WhyUs">
+                                    Why Us
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Testimonial">
+                                    Testimonial
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info_form ">
+                        <h5>
+                            Newsletter
+                        </h5>
+                        <form action="">
+                            <input type="email" placeholder="Enter your email">
+                            <button>
+                                Subscribe
+                            </button>
+                        </form>
+                        <div class="social_box">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- end info_section -->
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - _02_Layout - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
