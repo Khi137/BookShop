@@ -26,7 +26,7 @@ namespace _02_Layout
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSession();
             services.AddDbContext<_02_LayoutContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("_02_LayoutContext")));
         }
@@ -46,7 +46,7 @@ namespace _02_Layout
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession(); 
             app.UseRouting();
 
             app.UseAuthorization();

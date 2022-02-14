@@ -20,9 +20,24 @@
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicDate" class="control-label"></label>
+                <input asp-for="PublicDate" class="form-control" />
+                <span asp-validation-for="PublicDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pages" class="control-label"></label>
+                <input asp-for="Pages" class="form-control" />
+                <span asp-validation-for="Pages" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -39,14 +54,13 @@
                 <select asp-for="ProductTypesID" class="form-control" asp-items="ViewBag.ProductTypesID"></select>
                 <span asp-validation-for="ProductTypesID" class="text-danger"></span>
             </div>
-            <div class="">
+           <div class="">
                 <label asp-for="ImageFile" class="control-label"></label>
                 <input type="hidden" asp-for="Image"/>
                 <input asp-for="ImageFile" class="form-control" />
                 <img id="blah" style="width:200px;" src="~/img/product/@Model.Image"/>
                 <span asp-validation-for="Image" class="text-danger"></span>
-            </div>         
-            <br />
+            </div>    
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
@@ -65,8 +79,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-
     <script>
     $(document).ready(function(){
         $("#ImageFile").on("change",function (e) {

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<_02_Layout.Areas.Admin.Models.Carts>
+
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+}
+
+<h1>Giỏ hàng</h1>
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>
+               
+                @Html.DisplayNameFor(model=>model.Products.Image)
+               
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products.Price)
+            </th>
+            <th>
+                Thành tiền
+            </th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@(i++)</td>
+            <td>
+                 <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductsID">
+                <img src="~/img/product/@item.Products.Image" style="width:100px"/>
+                </a>
+            </td>
+            <td>
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductsID">
+                @Html.DisplayFor(modelItem => item.Products.ProductName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quality)
+            </td>
+            <td>
+                @item.Products.Price.ToString("#,##0")
+            </td>
+            <td>
+                @((item.Quality * item.Products.Price).ToString("#,##0"))
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.ProductsID" class="btn btn-danger">Xoá</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<h3>Tổng Tiền: @ViewBag.Total.ToString("#,##0") VNĐ</h3>
+<a asp-action="Pay" class="btn btn-success">Thanh Toán</a>

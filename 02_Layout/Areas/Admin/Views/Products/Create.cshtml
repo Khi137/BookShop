@@ -10,7 +10,7 @@
 <h4>Products</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4" enctype="multipart/form-data">
+    <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -19,9 +19,24 @@
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublicDate" class="control-label"></label>
+                <input asp-for="PublicDate" class="form-control" />
+                <span asp-validation-for="PublicDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pages" class="control-label"></label>
+                <input asp-for="Pages" class="form-control" />
+                <span asp-validation-for="Pages" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -30,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Inventory" class="control-label"></label>
-                <input  asp-for="Inventory" class="form-control" />
+                <input asp-for="Inventory" class="form-control" />
                 <span asp-validation-for="Inventory" class="text-danger"></span>
             </div>
             <div class="form-group">

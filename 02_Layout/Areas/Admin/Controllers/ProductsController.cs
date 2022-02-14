@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _02_Layout.Areas.Admin.Models;
 using _02_Layout.Data;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace _02_Layout.Areas.Admin.Controllers
 {
@@ -16,9 +16,7 @@ namespace _02_Layout.Areas.Admin.Controllers
     public class ProductsController : Controller
     {
         private readonly _02_LayoutContext _context;
-
         private readonly IWebHostEnvironment _webHostEnviroment;
-
         public ProductsController(_02_LayoutContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
@@ -63,7 +61,7 @@ namespace _02_Layout.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductName,Description,Price,Inventory,ProductTypesID,ImageFile,Status")] Products products)
+        public async Task<IActionResult> Create([Bind("Id,ProductName,Author,PublicDate,Description,Pages,Price,Inventory,ProductTypesID,ImageFile,Status")] Products products)
         {
             if (ModelState.IsValid)
             {
@@ -84,8 +82,6 @@ namespace _02_Layout.Areas.Admin.Controllers
                     _context.Update(products);
                     await _context.SaveChangesAsync();
                 }
-
-               
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductTypesID"] = new SelectList(_context.ProductTypes, "Id", "Id", products.ProductTypesID);
@@ -114,7 +110,7 @@ namespace _02_Layout.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Description,Price,Inventory,ProductTypesID,Image,ImageFile,Status")] Products products)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Author,PublicDate,Description,Pages,Price,Inventory,ProductTypesID,Image,ImageFile,Status")] Products products)
         {
             if (id != products.Id)
             {
@@ -126,12 +122,12 @@ namespace _02_Layout.Areas.Admin.Controllers
                 try
                 {
                     //Xoá ảnh cũ
-                    if(products.ImageFile!=null)
+                    if (products.ImageFile != null)
                     {
                         var fileToDelete = Path.Combine(_webHostEnviroment.WebRootPath, "img", "product", products.Image);
                         FileInfo file = new FileInfo(fileToDelete);
                         file.Delete();
-                    }    
+                    }
 
                     //Upload ảnh
                     if (products.ImageFile != null)
@@ -146,6 +142,7 @@ namespace _02_Layout.Areas.Admin.Controllers
                         }
                         products.Image = fileName;
                     }
+
                     _context.Update(products);
                     await _context.SaveChangesAsync();
                 }

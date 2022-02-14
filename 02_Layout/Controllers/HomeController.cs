@@ -1,5 +1,8 @@
-﻿using _02_Layout.Models;
+﻿using _02_Layout.Data;
+using _02_Layout.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,16 +14,28 @@ namespace _02_Layout.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly _02_LayoutContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(_02_LayoutContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            if(HttpContext.Session.GetString("Username")==null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }    
+            
+
+            var _02_LayoutContext = _context.Products.Include(p => p.ProductTypes);
+            return View(await _02_LayoutContext.OrderByDescending(x => x.Id).Take(6).ToListAsync());
+
         }
         public IActionResult Product()
         {
@@ -28,18 +43,50 @@ namespace _02_Layout.Controllers
         }
         public IActionResult WhyUs()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
             return View();
         }
         public IActionResult About()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
             return View();
         }
         public IActionResult Testimonial()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
             return View();
         }
         public IActionResult Cart()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
             return View();
         }
         public IActionResult MyAccount()
@@ -51,6 +98,27 @@ namespace _02_Layout.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(string Username, string Password)
+        {
+
+            bool result = _context.Accounts.Where(a => a.UserName == Username && a.Password == Password).Count() > 0;
+            if (result)
+            {
+                HttpContext.Session.SetString("Username", Username);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+ 
+                ViewBag.ErrorMessage = "Đăng nhập thất bại";
+                return View();
+            }
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

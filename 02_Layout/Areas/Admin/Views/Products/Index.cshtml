@@ -10,6 +10,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="main-panel">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body"> 
+                <div class="table-responsive">
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +22,16 @@
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pages)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -44,7 +58,16 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicDate)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pages)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
@@ -56,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.ProductTypes.ProductTypeName)
             </td>
             <td>
-                <div class="col-md-4">
-                <img id="blah" src="~/img/product/@Html.DisplayFor(modelItem => item.Image)" alt="no image" width="150px" heigh="150px" />
-                </div>           
+
+                <img  src="~/img/product/@Html.DisplayFor(modelItem => item.Image)" alt="no image" style="width:50px;height:50px" />
+ 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
@@ -72,3 +95,7 @@
 }
     </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>

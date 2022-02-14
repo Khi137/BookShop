@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,9 +13,22 @@ namespace _02_Layout.Areas.Admin.Models
         [DisplayName("Tên sản phẩm")]
         [Required(ErrorMessage = "Tên sản phẩm không được bỏ trống")]
         public string ProductName { get; set; }
+
+        [DisplayName("Tác giả")]
+        [Required(ErrorMessage = "Tác giả không được bỏ trống")]
+        public string Author { get; set; }
+
+        [DisplayName("Ngày xuất bản")]
+
+        [Required(ErrorMessage = "Ngày xuất bản không được bỏ trống")]
+        [DataType(DataType.Date)]
+        public DateTime PublicDate { get; set; }
+
         [DisplayName("Mô tả")]
         [Required(ErrorMessage = "Mô tả không được bỏ trống")]
         public string Description { get; set; }
+        [DisplayName("Số trang")]
+        public int Pages { get; set; }
         [DisplayName("Giá")]
         public int Price { get; set; }
         [DisplayName("Tồn kho")]

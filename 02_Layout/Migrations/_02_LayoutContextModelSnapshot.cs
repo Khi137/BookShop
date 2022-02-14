@@ -61,6 +61,24 @@ namespace _02_Layout.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("_02_Layout.Areas.Admin.Models.Ads", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ads");
+                });
+
             modelBuilder.Entity("_02_Layout.Areas.Admin.Models.Carts", b =>
                 {
                     b.Property<int>("Id")
@@ -204,6 +222,10 @@ namespace _02_Layout.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +234,9 @@ namespace _02_Layout.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Inventory")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Pages")
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
@@ -223,6 +248,9 @@ namespace _02_Layout.Migrations
 
                     b.Property<int>("ProductTypesID")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("PublicDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");

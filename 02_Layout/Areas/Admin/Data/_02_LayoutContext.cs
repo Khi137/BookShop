@@ -19,5 +19,9 @@ namespace _02_Layout.Data
         public DbSet<_02_Layout.Areas.Admin.Models.Products> Products { get; set; }
 
         public DbSet<_02_Layout.Areas.Admin.Models.ProductTypes> ProductTypes { get; set; }
+
+        public DbSet<_02_Layout.Areas.Admin.Models.Carts> Carts { get; set; }
+
+        public DbSet<_02_Layout.Areas.Admin.Models.Ads> Ads { get; set; }
     }
 }
