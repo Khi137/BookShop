@@ -67,7 +67,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" id="ajax" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -88,3 +88,8 @@
     });
 </script>
 }
+<script>
+    document.getElementById('ajax').onclick=function(){
+        alert("Sửa thành công");
+    }
+</script>

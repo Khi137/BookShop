@@ -38,6 +38,14 @@ namespace _02_Layout.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                ViewBag.Username = null;
+            }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -165,5 +173,6 @@ namespace _02_Layout.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
+        
     }
 }

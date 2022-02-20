@@ -57,23 +57,27 @@
             @Html.DisplayNameFor(model => model.ProductTypes)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductTypes.Id)
+            @Html.DisplayFor(model => model.ProductTypes.ProductTypeName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+            
+         <img  src="~/img/product/@Html.DisplayFor(model => model.Image)" alt="no image" style="width:200px;height:200px" />
+
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+        <form asp-controller="Carts" asp-action="AddToCart" asp-route-id="@Model.Id">
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+        <div class="form-group pr-3 pl-3">
+                <label class="control-label"></label>
+                <input name="SoLuong" type="number" class="form-control" />
+                <span  class="text-danx ger">Số lượng</span>
+        </div>
+       <div class="form-group">
+                <input type="submit" value="AddToCart" class="btn btn-primary" />
+            </div>
+        </form>
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -4,10 +4,12 @@
     ViewData["Title"] = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int i = 1;
+    bool haveProduct = true;
 }
 
-<h1>Giỏ hàng</h1>
 
+<div style="margin:200px;">
+    <h1>Giỏ hàng</h1>
 <table class="table text-center">
     <thead>
         <tr>
@@ -48,6 +50,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quality)
+                @if (item.Products.Inventory<item.Quality)
+                {
+                    haveProduct = false;
+                            <span class="text-danger">(Tồn kho: @item.Products.Inventory)</span>
+                        }
             </td>
             <td>
                 @item.Products.Price.ToString("#,##0")
@@ -56,11 +63,15 @@
                 @((item.Quality * item.Products.Price).ToString("#,##0"))
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.ProductsID" class="btn btn-danger">Xoá</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Carts" class="btn btn-danger">Xoá</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
 <h3>Tổng Tiền: @ViewBag.Total.ToString("#,##0") VNĐ</h3>
-<a asp-action="Pay" class="btn btn-success">Thanh Toán</a>
+@if(haveProduct)
+    {
+        <a asp-action="Pay" class="btn btn-success">Thanh Toán</a>
+    }
+</div>

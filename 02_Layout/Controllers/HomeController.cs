@@ -32,8 +32,12 @@ namespace _02_Layout.Controllers
                 ViewBag.Username = HttpContext.Session.GetString("Username");
             }    
             
+   
 
             var _02_LayoutContext = _context.Products.Include(p => p.ProductTypes);
+            var listads = _context.Ads.Where(q => q.Status == true);
+            ViewBag.Image = listads.ToList();
+            
             return View(await _02_LayoutContext.OrderByDescending(x => x.Id).Take(6).ToListAsync());
 
         }
@@ -107,9 +111,13 @@ namespace _02_Layout.Controllers
         {
 
             bool result = _context.Accounts.Where(a => a.UserName == Username && a.Password == Password).Count() > 0;
+            var account = _context.Accounts.FirstOrDefault(a => a.UserName == Username && a.Password == Password);
             if (result)
             {
                 HttpContext.Session.SetString("Username", Username);
+                HttpContext.Session.SetInt32("Id", account.Id);
+                HttpContext.Session.SetString("PhoneNumber", account.PhoneNumber);
+                HttpContext.Session.SetString("Adress", account.Adress);
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -123,6 +131,10 @@ namespace _02_Layout.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult AdsPartial()
+        {
+            return PartialView();
         }
     }
 }

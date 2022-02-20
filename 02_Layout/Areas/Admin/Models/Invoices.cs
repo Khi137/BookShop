@@ -10,7 +10,7 @@ namespace _02_Layout.Areas.Admin.Models
         public int AccountsID { get; set; }
 
         public Accounts Accounts { get; set; }
-
+        [DisplayName("Ngày mua")]
         public DateTime BuyDate { get; set; }
         [DisplayName("Địa chỉ giao hàng")]
         public string AdressOrder { get; set; }

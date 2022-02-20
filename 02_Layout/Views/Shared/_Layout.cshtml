@@ -50,7 +50,7 @@
                         <a asp-controller="Home" asp-action="Login" class="account-link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-                                 @(@ViewBag.Username==null?"Đăng Nhập Nè":(Context.Session.GetString("Username"))) 
+                                 @(@ViewBag.Username==null?"Đăng Nhập":(Context.Session.GetString("Username"))) 
                             </span>
                         </a>
                          <a asp-action="Register" asp-controller="Home" class="account-link">

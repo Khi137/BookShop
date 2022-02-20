@@ -64,7 +64,9 @@
                 @Html.DisplayFor(modelItem => item.PublicDate)
             </td>
             <td>
+                <div id="Mota_Content">
                 @Html.DisplayFor(modelItem => item.Description)
+                </div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pages)
@@ -80,7 +82,7 @@
             </td>
             <td>
 
-                <img  src="~/img/product/@Html.DisplayFor(modelItem => item.Image)" alt="no image" style="width:50px;height:50px" />
+                <img  src="~/img/product/@Html.DisplayFor(modelItem => item.Image)" alt="no image" style="width:100px;height:100px" />
  
             </td>
             <td>
@@ -99,3 +101,16 @@
 </div>
 </div>
 </div>
+<style>
+    #Mota_Content{
+        white-space: nowrap;
+        width: 100px;
+        overflow :hidden;
+        
+    }
+    #Mota_Content:hover{ 
+        overflow:visible;
+        white-space: normal;
+        width:300px;
+    }
+</style>

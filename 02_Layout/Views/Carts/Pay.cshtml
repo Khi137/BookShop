@@ -1,0 +1,44 @@
+﻿@model _02_Layout.Areas.Admin.Models.Invoices
+
+@{
+    
+}
+@{
+    IEnumerable<_02_Layout.Areas.Admin.Models.Accounts> lstAcc = (IEnumerable<_02_Layout.Areas.Admin.Models.Accounts>)ViewBag.AdressOrder;
+}
+    
+<h1>Pay</h1>
+
+<h4>Invoices</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Pay" asp-controller="Carts" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="AdressOrder" class="control-label"></label>
+                <input asp-for="AdressOrder" class="form-control" value="@ViewBag.Adress" />
+                <span asp-validation-for="AdressOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneOrder" class="control-label"></label>
+                <input asp-for="PhoneOrder" class="form-control" value="@ViewBag.PhoneNumber"/>
+                <input type="hidden" value="@ViewBag.PhoneNumber"/>
+                <span asp-validation-for="PhoneOrder" class="text-danger"></span>
+            </div>
+            <span>Tổng tiền: @ViewBag.CartsTotal.ToString("#,##0") VNĐ</span>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" Thanh Toán/>
+            </div>  
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Quay Lại</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
