@@ -266,7 +266,7 @@ namespace _02_Layout.Controllers
         public async Task<IActionResult> AddToCart(int SoLuong, int id)
         {
             int Id = (int)HttpContext.Session.GetInt32("Id");
-            var carts = _context.Carts.FirstOrDefault(c => c.ProductsID == id && c.AccountsID== id);
+            var carts = _context.Carts.FirstOrDefault(c => c.ProductsID == id && c.AccountsID== Id);
             if(carts == null)
             {
                

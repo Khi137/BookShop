@@ -7,28 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _02_Layout.Areas.Admin.Models;
 using _02_Layout.Data;
+using Microsoft.AspNetCore.Http;
 
-namespace _02_Layout.Areas.Admin.Controllers
+namespace _02_Layout.Controllers
 {
-    [Area("Admin")]
-    public class ProductTypesController : Controller
+    public class AccountsController : Controller
     {
         private readonly _02_LayoutContext _context;
 
-        public ProductTypesController(_02_LayoutContext context)
+        public AccountsController(_02_LayoutContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/ProductTypes
+        // GET: Accounts
         public async Task<IActionResult> Index()
         {
+            
 
-            ViewBag.dem = _context.Products.Where(a => a.ProductTypes.ProductTypeName == "Sách Giáo Khoa").Include(a => a.ProductTypes).Count();
-            return View(await _context.ProductTypes.ToListAsync());
+            return View(await _context.Accounts.ToListAsync());
         }
 
-        // GET: Admin/ProductTypes/Details/5
+        // GET: Accounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,62 +36,67 @@ namespace _02_Layout.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var productTypes = await _context.ProductTypes
+            var accounts = await _context.Accounts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (productTypes == null)
+            if (accounts == null)
             {
                 return NotFound();
             }
 
-            return View(productTypes);
+            return View(accounts);
         }
 
-        // GET: Admin/ProductTypes/Create
+        // GET: Accounts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/ProductTypes/Create
+        // POST: Accounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductTypeName,Status")] ProductTypes productTypes)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Password,PhoneNumber,Adress,FullName,IsAdmin,Avatar,Status")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(productTypes);
+                _context.Add(accounts);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(productTypes);
+            return View(accounts);
         }
 
-        // GET: Admin/ProductTypes/Edit/5
+        // GET: Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (HttpContext.Session.GetString("Username") == null)
             {
-                return NotFound();
+                ViewBag.Username = null;
             }
+            else
+            {
+                ViewBag.Username = HttpContext.Session.GetString("Username");
+            }
+            string username = HttpContext.Session.GetString("Username");
+            var accounts = await _context.Accounts.FirstOrDefaultAsync(m => m.UserName == username);
+            if(accounts==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }    
 
-            var productTypes = await _context.ProductTypes.FindAsync(id);
-            if (productTypes == null)
-            {
-                return NotFound();
-            }
-            return View(productTypes);
+            return View(accounts);
         }
 
-        // POST: Admin/ProductTypes/Edit/5
+        // POST: Accounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductTypeName,Status")] ProductTypes productTypes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Password,PhoneNumber,Adress,FullName,IsAdmin,Avatar,Status")] Accounts accounts)
         {
-            if (id != productTypes.Id)
+            if (id != accounts.Id)
             {
                 return NotFound();
             }
@@ -100,12 +105,12 @@ namespace _02_Layout.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(productTypes);
+                    _context.Update(accounts);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductTypesExists(productTypes.Id))
+                    if (!AccountsExists(accounts.Id))
                     {
                         return NotFound();
                     }
@@ -116,10 +121,10 @@ namespace _02_Layout.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(productTypes);
+            return View(accounts);
         }
 
-        // GET: Admin/ProductTypes/Delete/5
+        // GET: Accounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,30 +132,30 @@ namespace _02_Layout.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var productTypes = await _context.ProductTypes
+            var accounts = await _context.Accounts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (productTypes == null)
+            if (accounts == null)
             {
                 return NotFound();
             }
 
-            return View(productTypes);
+            return View(accounts);
         }
 
-        // POST: Admin/ProductTypes/Delete/5
+        // POST: Accounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productTypes = await _context.ProductTypes.FindAsync(id);
-            _context.ProductTypes.Remove(productTypes);
+            var accounts = await _context.Accounts.FindAsync(id);
+            _context.Accounts.Remove(accounts);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductTypesExists(int id)
+        private bool AccountsExists(int id)
         {
-            return _context.ProductTypes.Any(e => e.Id == id);
+            return _context.Accounts.Any(e => e.Id == id);
         }
     }
 }

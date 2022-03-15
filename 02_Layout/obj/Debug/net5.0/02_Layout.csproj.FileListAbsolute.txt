@@ -417,3 +417,8 @@ D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Areas\Admin\Views\InvoiceDetai
 D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Areas\Admin\Views\InvoiceDetails\Details.cshtml.g.cs
 D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Areas\Admin\Views\InvoiceDetails\Edit.cshtml.g.cs
 D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Areas\Admin\Views\InvoiceDetails\Index.cshtml.g.cs
+D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Views\Accounts\Create.cshtml.g.cs
+D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Views\Accounts\Delete.cshtml.g.cs
+D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Views\Accounts\Details.cshtml.g.cs
+D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Views\Accounts\Edit.cshtml.g.cs
+D:\ASP\02_Layout\02_Layout\obj\Debug\net5.0\Razor\Views\Accounts\Index.cshtml.g.cs

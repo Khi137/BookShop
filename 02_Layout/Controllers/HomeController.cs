@@ -106,6 +106,13 @@ namespace _02_Layout.Controllers
         {
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index","Home");
+        }
+
         [HttpPost]
         public IActionResult Login(string Username, string Password)
         {
@@ -114,15 +121,23 @@ namespace _02_Layout.Controllers
             var account = _context.Accounts.FirstOrDefault(a => a.UserName == Username && a.Password == Password);
             if (result)
             {
+                var admin = _context.Accounts.Where(a => a.IsAdmin == true && a.Password == Password && a.UserName == Username).Count() > 0;
                 HttpContext.Session.SetString("Username", Username);
                 HttpContext.Session.SetInt32("Id", account.Id);
                 HttpContext.Session.SetString("PhoneNumber", account.PhoneNumber);
                 HttpContext.Session.SetString("Adress", account.Adress);
-                return RedirectToAction("Index", "Home");
+                if(admin)
+                {
+                    return RedirectToAction("Products", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             else
             {
- 
                 ViewBag.ErrorMessage = "Đăng nhập thất bại";
                 return View();
             }

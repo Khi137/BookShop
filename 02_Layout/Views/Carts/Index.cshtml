@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     int i = 1;
     bool haveProduct = true;
+    bool number = true;
 }
 
 
@@ -54,8 +55,13 @@
                 {
                     haveProduct = false;
                             <span class="text-danger">(Tồn kho: @item.Products.Inventory)</span>
+                 }
+                 @if(item.Quality<=0)
+                        {
+                            number = false;
+                             <span class="text-danger">(Số lượng không hợp lệ)</span>
                         }
-            </td>
+                    </td>
             <td>
                 @item.Products.Price.ToString("#,##0")
             </td>
@@ -70,7 +76,7 @@
     </tbody>
 </table>
 <h3>Tổng Tiền: @ViewBag.Total.ToString("#,##0") VNĐ</h3>
-@if(haveProduct)
+@if(haveProduct && number)
     {
         <a asp-action="Pay" class="btn btn-success">Thanh Toán</a>
     }

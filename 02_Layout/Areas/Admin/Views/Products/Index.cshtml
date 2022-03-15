@@ -6,7 +6,15 @@
 }
 
 <h1>Index</h1>
-
+<form asp-action="Search" method="get">
+               
+                Tên Sản Phẩm: <input type="text" name="name"/>
+                Tác Giả: <input type="text" name="author"/>
+                Loại Sản  Phẩm: <select name="ProductTypesID" asp-items="@ViewBag.ProductTypesID"></select> 
+                Khoảng Giá tiền: <input type="text" name="miniprice"/> -> <input type="text" name="maxprice"/><br />
+                                                                          <button class="btn-secondary" style="margin-left:92%; margin-top:1%;" type="submit">Tìm kiếm</button>
+               
+            </form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>

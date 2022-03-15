@@ -181,7 +181,21 @@ namespace _02_Layout.Areas.Admin.Controllers
 
             return View(products);
         }
+        public IActionResult Search( string name, string author, int miniprice = 0, int maxprice = int.MaxValue, int productTypesId = 1)
+        {
+            ViewData["ProductTypesID"] = new SelectList(_context.ProductTypes, "Id", "ProductName");
 
+            if (name == null) name = "";
+            if (author == null) author = "";
+
+            var products = _context.Products.Include(a => a.ProductTypes)
+                                          
+                                            .Where(a => a.ProductName.Contains(name))
+                                            .Where(a => a.Author.Contains(author))
+                                            .Where(a => a.ProductTypesID == productTypesId)
+                                            .Where(a => a.Price >= miniprice && a.Price <= maxprice).ToList();
+            return View("Index", products);
+        }
         // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

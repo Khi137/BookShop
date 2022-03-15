@@ -30,7 +30,7 @@
                         <a href="">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <span>
-                                Call : +01 123455678990
+                                SĐT : +01 123455678990
                             </span>
                         </a>
                         <a href="">
@@ -47,12 +47,20 @@
                         </button>
                     </from>
                     <div class="user_option_box">
-                        <a asp-controller="Home" asp-action="Login" class="account-link">
+                       
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-                                 @(@ViewBag.Username==null?"Đăng Nhập":(Context.Session.GetString("Username"))) 
+                                 
+                                 @if(ViewBag.Username!=null)
+                                {
+                                    <a asp-controller="Accounts" asp-action="Edit" >@Context.Session.GetString("Username")</a>
+                                }
+                                else
+                                {
+                                     <a asp-controller="Home" asp-action="Login" class="account-link">Đăng nhập</a>
+                                }
                             </span>
-                        </a>
+                        
                          <a asp-action="Register" asp-controller="Home" class="account-link">
                                 <span>
                                     Đăng Ký
@@ -61,7 +69,7 @@
                         <a asp-controller="Carts" asp-action="Index" class="cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>
-                                Cart
+                               Giỏ Hàng
                             </span>
                         </a>
                     </div>
@@ -85,19 +93,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ">
                             <li class="nav-item active">
-                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Trang Chủ <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="About"> About</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="About"> Thông Tin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Products" asp-action="Index">Products</a>
+                                <a class="nav-link" asp-controller="Products" asp-action="Index">Các Sản Phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="WhyUs">Why Us</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="WhyUs">Lí Nên Mua Ở Đây</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"asp-controller="Home" asp-action="Testimonial">Testimonial</a>
+                                <a class="nav-link"asp-controller="Home" asp-action="Testimonial">Chứng nhận</a>
                             </li>
                         </ul>
                     </div>
@@ -123,7 +131,7 @@
                         </h5>
                         <p>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            Address
+                            Địa chỉ
                         </p>
                         <p>
                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -138,7 +146,7 @@
                 <div class="col-md-3">
                     <div class="info_info">
                         <h5>
-                            Information
+                            Thông tin
                         </h5>
                         <p>
                             Eligendi sunt, provident, debitis nemo, facilis cupiditate velit libero dolorum aperiam enim nulla iste maxime corrupti ad illo libero minus.
@@ -148,32 +156,32 @@
                 <div class="col-md-3">
                     <div class="info_links">
                         <h5>
-                            Useful Link
+                            Các đường liên kết
                         </h5>
                         <ul>
                             <li>
                                 <a  asp-controller="Home" asp-action="Index">
-                                    Home
+                                    Trang Chủ
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="About">
-                                    About
+                                    Thông Tin   
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="Product">
-                                    Products
+                                    Các Sản Phẩm
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="WhyUs">
-                                    Why Us
+                                    Vì sao lại chọn chúng tôi
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="Testimonial">
-                                    Testimonial
+                                    Chứng nhận
                                 </a>
                             </li>
                         </ul>
@@ -182,12 +190,12 @@
                 <div class="col-md-3">
                     <div class="info_form ">
                         <h5>
-                            Newsletter
+                            Bản tin
                         </h5>
                         <form action="">
-                            <input type="email" placeholder="Enter your email">
+                            <input type="email" placeholder="Email của bạn">
                             <button>
-                                Subscribe
+                                Đăng ký
                             </button>
                         </form>
                         <div class="social_box">
@@ -213,7 +221,7 @@
     <!-- end info_section -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - _02_Layout - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - 0306191004 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
